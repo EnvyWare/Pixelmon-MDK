@@ -1,0 +1,96 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = 'forge'
+            url = 'https://files.minecraftforge.net/maven'
+        }
+        maven {
+            url = 'https://plugins.gradle.org/m2/'
+        }
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:6.1.0"
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.+', changing: true
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
+apply plugin: 'net.minecraftforge.gradle'
+
+minecraft {
+    mappings channel: 'official', version: '1.16.5'
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+group = 'your.domain.path'
+version = '0.0.1'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://repo.lucko.me/' }
+    maven { url = "https://repo.aikar.co/content/groups/aikar/" }
+    maven { url = "https://jitpack.io" }
+    maven {
+        name = 'sponge'
+        url = 'https://repo.spongepowered.org/maven'
+    }
+    ivy {
+        setUrl('https://download.nodecdn.net/containers/reforged/server/release')
+        metadataSources {
+            artifact()
+        }
+        patternLayout {
+            artifact('[revision]/[artifact].[ext]')
+        }
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
+
+    implementation fg.deobf('pixelmon:Pixelmon-1.16.5-9.0.6-server:9.0.6')
+
+    // Any other dependencies go here
+    // To shade them do `shadow` rather than `implementation`
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+shadowJar {
+    configurations = [project.configurations.shadow]
+    dependsOn('reobfJar')
+
+    // Where you relocate any shaded dependencies
+
+    exclude 'net.minecraft'
+    exclude "**/module-info.class"
+}
+
+reobf {
+    shadowJar {}
+}
+
+task versionedRelease(type: Copy) { // This creates a jar with a version number appended to the end in the `release` directory (for ease of use)
+    delete fileTree('../release/') {
+        include '**/*.jar'
+    }
+    group "build"
+    from('./build/libs/' + rootProject.name + '-Forge.jar')
+    into('../release/')
+    include '*.jar'
+    rename { String filename ->
+        filename.replace(".jar", "-${project.version}-${forgeVersion}.jar")
+    }
+}
+
+jar.finalizedBy('reobfJar')
+build.finalizedBy('versionedRelease')
