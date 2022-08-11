@@ -1,4 +1,4 @@
-package your.mod.path;
+package your.domain.path;
 
 import com.pixelmonmod.pixelmon.Pixelmon;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -10,7 +10,7 @@ import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import your.mod.path.listener.PixelmonEggHatchExampleListener;
+import your.domain.path.listener.PixelmonEggHatchExampleListener;
 
 @Mod(ModFile.MOD_ID)
 @Mod.EventBusSubscriber(modid = ModFile.MOD_ID)
@@ -30,7 +30,7 @@ public class ModFile {
         // Logic for when the server is starting here
 
         // Here is how you register a listener for Pixelmon events
-        // Pixelmon has it's own event bus for it's events, as does TCG
+        // Pixelmon has its own event bus for its events, as does TCG
         // So any event listener for those mods need to be registered to those specific event buses
         Pixelmon.EVENT_BUS.register(new PixelmonEggHatchExampleListener());
     }

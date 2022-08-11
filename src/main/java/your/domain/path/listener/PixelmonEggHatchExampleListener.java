@@ -1,4 +1,4 @@
-package your.mod.path.listener;
+package your.domain.path.listener;
 
 import com.pixelmonmod.pixelmon.api.events.EggHatchEvent;
 import net.minecraft.util.Util;
