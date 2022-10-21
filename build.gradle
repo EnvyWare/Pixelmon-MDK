@@ -55,7 +55,7 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
 
-    implementation fg.deobf('pixelmon:Pixelmon-1.16.5-9.0.6-server:9.0.6')
+    implementation fg.deobf('pixelmon:Pixelmon-1.16.5-9.0.11-server:9.0.11')
 
     // Any other dependencies go here
     // To shade them do `shadow` rather than `implementation`
