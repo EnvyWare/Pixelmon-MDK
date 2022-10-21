@@ -14,6 +14,7 @@ please join my Discord and ask your questions in the [developer channel](https:/
     * [Clone](#clone)
     * [Editting the MDK](#editing-the-mdk)
     * [Building](#building)
+    * [Updating Pixelmon](#updating-pixelmon)
   * [FAQ](#faq)
   * [Creating commands](#commands)
   * [Listeners](#listeners)
@@ -50,6 +51,14 @@ you should use the `./gradlew build` command which will produce a JAR file
 in the `releases` folder with a version number appended to the end.
 
 Make sure to update your version number for each release you do!
+
+#### Updating Pixelmon
+If the version of Pixelmon available in this is out of date then make sure to follow these steps to update it to the latest.
+
+1. Find your way to the [build.gradle](build.gradle) file
+2. Once in that file look for the "dependencies" section. Which looks like this:
+![](https://i.gyazo.com/8243e355906e817a62347db6ef8ff712.png)
+3. Then replace the "9.0.11" with the current version of the mod (in both places!)
 
 ## FAQ
 Frequently Asked Questions
