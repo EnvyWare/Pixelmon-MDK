@@ -3,7 +3,7 @@ buildscript {
         jcenter()
         maven {
             name = 'forge'
-            url = 'https://files.minecraftforge.net/maven'
+            url = 'https://maven.minecraftforge.net'
         }
         maven {
             url = 'https://plugins.gradle.org/m2/'
@@ -53,7 +53,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
 
     implementation fg.deobf('pixelmon:Pixelmon-1.16.5-9.0.11-server:9.0.11')
 
