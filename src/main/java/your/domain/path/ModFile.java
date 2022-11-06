@@ -11,6 +11,7 @@ import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import your.domain.path.listener.PixelmonEggHatchExampleListener;
+import your.domain.path.listener.PokemonSpawnExampleListener;
 
 @Mod(ModFile.MOD_ID)
 @Mod.EventBusSubscriber(modid = ModFile.MOD_ID)
@@ -33,6 +34,7 @@ public class ModFile {
         // Pixelmon has its own event bus for its events, as does TCG
         // So any event listener for those mods need to be registered to those specific event buses
         Pixelmon.EVENT_BUS.register(new PixelmonEggHatchExampleListener());
+        Pixelmon.EVENT_BUS.register(new PokemonSpawnExampleListener());
     }
 
     @SubscribeEvent
