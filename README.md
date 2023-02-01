@@ -8,11 +8,12 @@ please join my Discord and ask your questions in the [developer channel](https:/
 
 
 <!-- TOC -->
-* Pixelmon MD
+* Pixelmon MDK
   * [Getting Started](#getting-started)
     * [Download](#download)
     * [Clone](#clone)
     * [Editting the MDK](#editing-the-mdk)
+    * [Testing](#testing)
     * [Building](#building)
     * [Updating Pixelmon](#updating-pixelmon)
   * [FAQ](#faq)
