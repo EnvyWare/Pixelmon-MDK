@@ -17,7 +17,7 @@ import your.domain.path.listener.PokemonSpawnExampleListener;
 @Mod.EventBusSubscriber(modid = ModFile.MOD_ID)
 public class ModFile {
 
-    public static final String MOD_ID = "modid";
+    public static final String MOD_ID = "examplemod";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     private static ModFile instance;

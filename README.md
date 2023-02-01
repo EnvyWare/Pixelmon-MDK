@@ -38,7 +38,7 @@ under "Cloning an Existing Repository".
 ### Editing the MDK
 Once you have the decompressed files in your workspace open the folder using IntelliJ.
 
-Make sure to replace all "modid" references with the ID of your mod. When creating the mod ID please ensure
+Make sure to replace all "examplemod" references with the ID of your mod. When creating the mod ID please ensure
 that it is all lower case and only contains alphanumeric characters (otherwise Forge/Minecraft will refuse to load it)
 
 You should also change all "your.domain.path" references (and folder names) to the

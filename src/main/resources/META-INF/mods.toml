@@ -3,7 +3,7 @@ loaderVersion="[36,)"
 license="MIT"
 
 [[mods]]
-modId="modid"
+modId="examplemod"
 version="0.0.1"
 displayName="Mod name"
 displayURL="https://github.com/EnvyWare" # URL HERE
@@ -13,14 +13,14 @@ description='''
 Description of the mod here
 '''
 
-[[dependencies.modid]]
+[[dependencies.examplemod]]
     modId="forge"
     mandatory=true
     versionRange="[36,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.modid]]
+[[dependencies.examplemod]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.16.5,1.17)"
@@ -28,9 +28,9 @@ Description of the mod here
     side="BOTH"
 
 
-[[dependencies.modid]]
+[[dependencies.examplemod]]
     modId="pixelmon"
     mandatory=true
-    versionRange="[9.0.6, 9.0.7)"
+    versionRange="[9.1.2,)"
     ordering="NONE"
     side="BOTH"
