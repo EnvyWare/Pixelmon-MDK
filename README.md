@@ -45,6 +45,25 @@ You should also change all "your.domain.path" references (and folder names) to t
 packaging of your choice. You should own the domain that you're using and if not
 a common practice is using `me.yournamehere.`.
 
+#### Testing
+If you want to run your mod in the Minecraft game without having to run a server then follow the steps below.
+
+1. Run the ForgeGradle task`genIntelliJRuns` 
+2. Go to the drop down in the top right of IntelliJ
+
+![](https://i.gyazo.com/cef9f240a40c04f0d7ed81e1b66f4a25.png)
+
+3. Click the runClient entry from the drop down
+4. Click the red bug on the right to run the game
+
+Once you've pressed the red button (to the right of the green triangle) it may take a couple
+of minutes before IntellIJ runs the Minecraft client. This is normal as it is downloading the Pixelmon client
+and checking all the files for Mojang mappings so that it can run in your development environment.
+
+After a couple of minutes you should find that your mod has loaded in a Minecraft client. You can now
+enter a single player world and interact with your mod as normal.
+
+
 #### Building
 Once you have edited the above you're ready to go! To then compile your mod
 you should use the `./gradlew build` command which will produce a JAR file
