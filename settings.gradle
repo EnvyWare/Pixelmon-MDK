@@ -6,4 +6,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'modid'
+rootProject.name = 'examplemod'
