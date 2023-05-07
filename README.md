@@ -104,6 +104,19 @@ their documentation [here](https://github.com/Mojang/brigadier/blob/master/READM
 I have my own API for commands. If you're looking for examples of how to 
 use that I'd suggest looking through the [bingo](https://github.com/EnvyWare/ReforgedBingo) sidemod I have made.
 
+There is now two examples of commands in the MDK 
+- https://github.com/EnvyWare/Pixelmon-MDK/blob/main/src/main/java/your/domain/path/command/ExampleCommand.java
+- https://github.com/EnvyWare/Pixelmon-MDK/blob/main/src/main/java/your/domain/path/command/MoreComplicatedCommand.java
+
+Both of these demonstrate how you can use Brigadier to create server side commands (all commands are server side in 1.16.5).
+The second example shows a more complicated example with arguments and also gives an example of how to use the PokemonSpecification (spec) system.
+
+## Configs
+To create configs I recommend using Pixelmon's internal config API, which is the same as the config API in the EnvyWare API.
+The config API is just a small wrapper around Sponge's Configurate, and allows for very easy config reloading and simple config
+design from a code perspective. 
+You can find an example of how to use it [here](https://github.com/EnvyWare/Pixelmon-MDK/blob/main/src/main/java/your/domain/path/config/ExampleConfig.java)
+
 ## Listeners
 In the project you can find an example Pixelmon listener. However, below I'll
 include an example for TCG, Pixelmon and Forge.
