@@ -113,7 +113,7 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
 
-    implementation fg.deobf('pixelmon:Pixelmon-1.16.5-9.1.2-universal:9.1.2')
+    implementation fg.deobf('pixelmon:Pixelmon-1.16.5-9.1.3-universal:9.1.3')
 
     // Any other dependencies go here
     // To shade them do `shadow` rather than `implementation`
@@ -148,6 +148,12 @@ task versionedRelease(type: Copy) { // This creates a jar with a version number 
     include '*.jar'
     rename { String filename ->
         filename.replace(".jar", "-${project.version}.jar")
+    }
+}
+
+javadoc {
+    options {
+        links 'https://reforged.gg/docs/1165/'
     }
 }
 
