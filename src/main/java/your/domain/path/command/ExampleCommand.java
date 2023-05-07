@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.command.CommandSource;
 import net.minecraft.util.text.StringTextComponent;
+import your.domain.path.ModFile;
 
 public class ExampleCommand {
 
@@ -19,7 +20,7 @@ public class ExampleCommand {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(LiteralArgumentBuilder.<CommandSource>literal("example").executes(context -> {
             CommandSource source = context.getSource();
-            source.sendSuccess(new StringTextComponent("Hello world!"), false); // Sends a message to the sender - if true it will broadcast to all ops (like how /op does)
+            source.sendSuccess(new StringTextComponent(ModFile.getConfig().getExampleField()), false); // Sends a message to the sender - if true it will broadcast to all ops (like how /op does)
             return 1;
         }));
     }

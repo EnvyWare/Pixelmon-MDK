@@ -1,6 +1,7 @@
 package your.domain.path;
 
 import com.pixelmonmod.pixelmon.Pixelmon;
+import com.pixelmonmod.pixelmon.api.config.api.yaml.YamlConfigFactory;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -12,8 +13,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import your.domain.path.command.ExampleCommand;
 import your.domain.path.command.MoreComplicatedCommand;
+import your.domain.path.config.ExampleConfig;
 import your.domain.path.listener.PixelmonEggHatchExampleListener;
 import your.domain.path.listener.PokemonSpawnExampleListener;
+
+import java.io.IOException;
 
 @Mod(ModFile.MOD_ID)
 @Mod.EventBusSubscriber(modid = ModFile.MOD_ID)
@@ -24,8 +28,12 @@ public class ModFile {
 
     private static ModFile instance;
 
+    private ExampleConfig config;
+
     public ModFile() {
         instance = this;
+
+        reloadConfig();
     }
 
     @SubscribeEvent
@@ -37,6 +45,14 @@ public class ModFile {
         // So any event listener for those mods need to be registered to those specific event buses
         Pixelmon.EVENT_BUS.register(new PixelmonEggHatchExampleListener());
         Pixelmon.EVENT_BUS.register(new PokemonSpawnExampleListener());
+    }
+
+    public void reloadConfig() {
+        try {
+            this.config = YamlConfigFactory.getInstance(ExampleConfig.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @SubscribeEvent
@@ -69,5 +85,9 @@ public class ModFile {
 
     public static Logger getLogger() {
         return LOGGER;
+    }
+
+    public static ExampleConfig getConfig() {
+        return instance.config;
     }
 }
