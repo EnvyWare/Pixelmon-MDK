@@ -2,13 +2,17 @@ package your.domain.path;
 
 import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelmonmod.pixelmon.api.config.api.yaml.YamlConfigFactory;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import your.domain.path.command.ExampleCommand;
@@ -34,17 +38,24 @@ public class ModFile {
         instance = this;
 
         reloadConfig();
+
+        MinecraftForge.EVENT_BUS.register(this);
+
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        bus.addListener(ModFile::onModLoad);
     }
 
-    @SubscribeEvent
-    public static void onServerStarting(FMLServerStartingEvent event) {
-        // Logic for when the server is starting here
-
+    public static void onModLoad(FMLCommonSetupEvent event) {
         // Here is how you register a listener for Pixelmon events
         // Pixelmon has its own event bus for its events, as does TCG
         // So any event listener for those mods need to be registered to those specific event buses
         Pixelmon.EVENT_BUS.register(new PixelmonEggHatchExampleListener());
         Pixelmon.EVENT_BUS.register(new PokemonSpawnExampleListener());
+    }
+
+    @SubscribeEvent
+    public static void onServerStarting(FMLServerStartingEvent event) {
+        // Logic for when the server is starting here
     }
 
     public void reloadConfig() {
