@@ -28,6 +28,6 @@ description='''${mod_description}'''
 [[dependencies.${mod_id}]]
     modId="pixelmon"
     mandatory=true
-    versionRange="[9.1.2,)"
+    versionRange="[${pixelmon_version},)"
     ordering="NONE"
     side="BOTH"
