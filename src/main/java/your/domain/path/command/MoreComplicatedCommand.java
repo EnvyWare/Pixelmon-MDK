@@ -3,14 +3,13 @@ package your.domain.path.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.pixelmonmod.api.pokemon.PokemonSpecification;
 import com.pixelmonmod.api.pokemon.PokemonSpecificationProxy;
 import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.command.arguments.BlockPosArgument;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 
 public class MoreComplicatedCommand {
 
@@ -23,26 +22,26 @@ public class MoreComplicatedCommand {
      *
      * @param dispatcher The dispatcher from the event
      */
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
-        dispatcher.register(LiteralArgumentBuilder.<CommandSource>literal("complicated")
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(LiteralArgumentBuilder.<CommandSourceStack>literal("complicated")
                 .executes(context -> {
-                    context.getSource().sendFailure(new StringTextComponent("Invalid command"));
+                    context.getSource().sendFailure(Component.literal("Invalid command"));
                     return 0;
                 })
                 .then(Commands.argument("pos", BlockPosArgument.blockPos())
                         .executes(context -> {
-                            context.getSource().sendFailure(new StringTextComponent("Invalid command"));
+                            context.getSource().sendFailure(Component.literal("Invalid command"));
                             return 0;
                         }).then(
                                 Commands.argument("spec", StringArgumentType.greedyString()).executes(context -> {
-                                    PokemonSpecification spec = PokemonSpecificationProxy.create(context.getArgument("spec", String.class));
-                                    BlockPos pos = context.getArgument("pos", BlockPos.class);
+                                    var spec = PokemonSpecificationProxy.create(context.getArgument("spec", String.class));
+                                    var pos = context.getArgument("pos", BlockPos.class);
 
                                     PixelmonEntity pixelmonEntity = spec.create(context.getSource().getLevel());
                                     pixelmonEntity.setPos(pos.getX(), pos.getY(), pos.getZ());
                                     context.getSource().getLevel().addFreshEntity(pixelmonEntity);
 
-                                    context.getSource().sendSuccess(new StringTextComponent(context.getSource().getTextName() + " spawned a " + spec), true);
+                                    context.getSource().sendSuccess(() -> Component.literal(context.getSource().getTextName() + " spawned a " + spec), true);
                                     return 1;
                                 })
                         )

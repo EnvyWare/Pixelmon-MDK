@@ -2,8 +2,8 @@ package your.domain.path.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import net.minecraft.command.CommandSource;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.chat.Component;
 import your.domain.path.ModFile;
 
 public class ExampleCommand {
@@ -17,10 +17,10 @@ public class ExampleCommand {
      *
      * @param dispatcher The dispatcher from the event
      */
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
-        dispatcher.register(LiteralArgumentBuilder.<CommandSource>literal("example").executes(context -> {
-            CommandSource source = context.getSource();
-            source.sendSuccess(new StringTextComponent(ModFile.getConfig().getExampleField()), false); // Sends a message to the sender - if true it will broadcast to all ops (like how /op does)
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(LiteralArgumentBuilder.<CommandSourceStack>literal("example").executes(context -> {
+            var source = context.getSource();
+            source.sendSuccess(() -> Component.literal(ModFile.getConfig().getExampleField()), false); // Sends a message to the sender - if true it will broadcast to all ops (like how /op does)
             return 1;
         }));
     }

@@ -4,14 +4,14 @@ import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelmonmod.pixelmon.api.config.api.yaml.YamlConfigFactory;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.server.ServerStartedEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.event.server.ServerStoppedEvent;
+import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
-import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
-import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -54,7 +54,7 @@ public class ModFile {
     }
 
     @SubscribeEvent
-    public static void onServerStarting(FMLServerStartingEvent event) {
+    public static void onServerStarting(ServerStartingEvent event) {
         // Logic for when the server is starting here
     }
 
@@ -67,7 +67,7 @@ public class ModFile {
     }
 
     @SubscribeEvent
-    public static void onServerStarted(FMLServerStartedEvent event) {
+    public static void onServerStarted(ServerStartedEvent event) {
         // Logic for once the server has started here
     }
 
@@ -81,12 +81,12 @@ public class ModFile {
     }
 
     @SubscribeEvent
-    public static void onServerStopping(FMLServerStoppingEvent event) {
+    public static void onServerStopping(ServerStoppingEvent event) {
         // Logic for when the server is stopping
     }
 
     @SubscribeEvent
-    public static void onServerStopped(FMLServerStoppedEvent event) {
+    public static void onServerStopped(ServerStoppedEvent event) {
         // Logic for when the server is stopped
     }
 
