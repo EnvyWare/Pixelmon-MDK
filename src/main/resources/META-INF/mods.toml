@@ -1,34 +1,31 @@
 modLoader="javafml"
-loaderVersion="[36,)"
-license="MIT"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
 
 [[mods]]
-modId="examplemod"
-version="0.0.1"
-displayName="Mod name"
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
 displayURL="https://github.com/EnvyWare" # URL HERE
 credits="https://github.com/EnvyWare" # Your name here
 authors="https://github.com/EnvyWare" # Your name here
-description='''
-Description of the mod here
-'''
+description='''${mod_description}'''
 
-[[dependencies.examplemod]]
+[[dependencies.${mod_id}]]
     modId="forge"
     mandatory=true
-    versionRange="[36,)"
+    versionRange="${forge_version_range}"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.${mod_id}]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,1.17)"
+    versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
 
-
-[[dependencies.examplemod]]
+[[dependencies.${mod_id}]]
     modId="pixelmon"
     mandatory=true
     versionRange="[9.1.2,)"

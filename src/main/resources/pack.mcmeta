@@ -1,6 +1,6 @@
 {
   "pack": {
-    "description": "Brief mod name/description here",
-    "pack_format": 6
+    "text": "${mod_id} resources",
+    "pack_format": 15
   }
 }
