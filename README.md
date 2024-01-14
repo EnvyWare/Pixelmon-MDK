@@ -1,7 +1,7 @@
 # Pixelmon MDK [![Discord](https://img.shields.io/discord/831966641586831431)](https://discord.gg/7vqgtrjDGw) [![GitHub](https://img.shields.io/github/license/Pixelmon-Development/API)](https://www.gnu.org/licenses/lgpl-3.0.html)
 
 This repository serves as an example for how to create a Pixelmon sidemod
-using Forge 1.20.1 and Pixelmon's 9.X.X API.
+using Forge 1.20.2 and Pixelmon's 9.X.X API.
 
 If you have any unanswered questions after reading through this README then
 please join my Discord and ask your questions in the [developer channel](https://discord.gg/7vqgtrjDGw).
@@ -108,7 +108,7 @@ There is now two examples of commands in the MDK
 - https://github.com/EnvyWare/Pixelmon-MDK/blob/main/src/main/java/your/domain/path/command/ExampleCommand.java
 - https://github.com/EnvyWare/Pixelmon-MDK/blob/main/src/main/java/your/domain/path/command/MoreComplicatedCommand.java
 
-Both of these demonstrate how you can use Brigadier to create server side commands (all commands are server side in 1.20.1).
+Both of these demonstrate how you can use Brigadier to create server side commands (all commands are server side in 1.20.2).
 The second example shows a more complicated example with arguments and also gives an example of how to use the PokemonSpecification (spec) system.
 
 ## Configs
