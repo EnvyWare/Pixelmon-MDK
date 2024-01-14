@@ -4,7 +4,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.pixelmonmod.api.pokemon.PokemonSpecificationProxy;
-import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
@@ -35,13 +34,19 @@ public class MoreComplicatedCommand {
                         }).then(
                                 Commands.argument("spec", StringArgumentType.greedyString()).executes(context -> {
                                     var spec = PokemonSpecificationProxy.create(context.getArgument("spec", String.class));
-                                    var pos = context.getArgument("pos", BlockPos.class);
 
-                                    PixelmonEntity pixelmonEntity = spec.create(context.getSource().getLevel());
+                                    if (!spec.wasSuccess()) {
+                                        context.getSource().sendFailure(Component.literal("Invalid pokemon specification " + spec.getError()));
+                                        return 0;
+                                    }
+
+                                    var pos = context.getArgument("pos", BlockPos.class);
+                                    var pixelmonEntity = spec.get().create(context.getSource().getLevel());
+
                                     pixelmonEntity.setPos(pos.getX(), pos.getY(), pos.getZ());
                                     context.getSource().getLevel().addFreshEntity(pixelmonEntity);
 
-                                    context.getSource().sendSuccess(() -> Component.literal(context.getSource().getTextName() + " spawned a " + spec), true);
+                                    context.getSource().sendSuccess(() -> Component.literal(context.getSource().getTextName() + " spawned a " + spec.get()), true);
                                     return 1;
                                 })
                         )
