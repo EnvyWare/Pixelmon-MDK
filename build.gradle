@@ -169,7 +169,7 @@ task versionedRelease(type: Copy) { // This creates a jar with a version number 
 
 javadoc {
     options {
-        links 'https://reforged.gg/docs/1165/'
+        links 'https://reforged.gg/docs/1201/'
     }
 }
 
