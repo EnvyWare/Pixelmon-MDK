@@ -17,24 +17,18 @@ public class NPCSpawnExampleListener {
 
     @SubscribeEvent
     public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
-        if (!(event.getEntity() instanceof NPCEntity)) {
+        if (!(event.getEntity() instanceof NPCEntity npc)) {
             return;
         }
-
-        NPCEntity npc = (NPCEntity) event.getEntity();
 
         npc.setName("New name!");
         npc.setAIMode(EnumTrainerAI.StandStill);
 
-        if (npc instanceof NPCTrainer) {
-            NPCTrainer trainer = (NPCTrainer) npc;
-
+        if (npc instanceof NPCTrainer trainer) {
             trainer.setBattleAIMode(BattleAIMode.ADVANCED);
             trainer.setBossTier(BossTierRegistry.getRandomBossTier());
             trainer.setPokemonLevel(100);
-        } else if (npc instanceof NPCChatting) {
-            NPCChatting chatting = (NPCChatting) npc;
-
+        } else if (npc instanceof NPCChatting chatting) {
             chatting.setChat(Lists.newArrayList(
                     "Hello world",
                     "I am a chatting NPC!"
