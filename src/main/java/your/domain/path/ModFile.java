@@ -62,7 +62,7 @@ public class ModFile {
         try {
             this.config = YamlConfigFactory.getInstance(ExampleConfig.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Failed to load config", e);
         }
     }
 
