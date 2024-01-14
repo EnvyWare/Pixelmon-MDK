@@ -2,6 +2,7 @@ package your.domain.path;
 
 import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelmonmod.pixelmon.api.config.api.yaml.YamlConfigFactory;
+import com.pixelmonmod.tcg.TCG;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
@@ -20,6 +21,7 @@ import your.domain.path.command.MoreComplicatedCommand;
 import your.domain.path.config.ExampleConfig;
 import your.domain.path.listener.PixelmonEggHatchExampleListener;
 import your.domain.path.listener.PokemonSpawnExampleListener;
+import your.domain.path.listener.tcg.PackOpeningListener;
 
 import java.io.IOException;
 
@@ -51,6 +53,7 @@ public class ModFile {
         // So any event listener for those mods need to be registered to those specific event buses
         Pixelmon.EVENT_BUS.register(new PixelmonEggHatchExampleListener());
         Pixelmon.EVENT_BUS.register(new PokemonSpawnExampleListener());
+        TCG.EVENT_BUS.register(new PackOpeningListener());
     }
 
     @SubscribeEvent
