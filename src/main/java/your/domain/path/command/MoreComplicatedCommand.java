@@ -14,7 +14,7 @@ public class MoreComplicatedCommand {
 
     /**
      *
-     * Used for registering the command on the {@link net.minecraftforge.event.RegisterCommandsEvent}
+     * Used for registering the command on the {@link net.neoforged.neoforge.event.RegisterCommandsEvent}
      *
      * For more information about brigadier, how it works, what things mean, and lots of examples please read the
      * GitHub READ ME here <a href="https://github.com/Mojang/brigadier/blob/master/README.md">URL</a>

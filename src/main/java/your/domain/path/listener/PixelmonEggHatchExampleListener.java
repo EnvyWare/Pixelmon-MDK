@@ -2,7 +2,7 @@ package your.domain.path.listener;
 
 import com.pixelmonmod.pixelmon.api.events.EggHatchEvent;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
 
 public class PixelmonEggHatchExampleListener {
 

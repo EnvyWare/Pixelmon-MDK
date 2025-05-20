@@ -1,39 +1,22 @@
 package your.domain.path.listener;
 
-import com.google.common.collect.Lists;
-import com.pixelmonmod.pixelmon.api.battles.BattleAIMode;
-import com.pixelmonmod.pixelmon.api.pokemon.boss.BossTierRegistry;
-import com.pixelmonmod.pixelmon.entities.npcs.NPCChatting;
-import com.pixelmonmod.pixelmon.entities.npcs.NPCEntity;
-import com.pixelmonmod.pixelmon.entities.npcs.NPCTrainer;
-import com.pixelmonmod.pixelmon.enums.EnumTrainerAI;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import com.pixelmonmod.pixelmon.entities.npcs.NPC;
+import net.minecraft.network.chat.Component;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import your.domain.path.ModFile;
 
-@Mod.EventBusSubscriber(modid = ModFile.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = ModFile.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
 public class NPCSpawnExampleListener {
 
     @SubscribeEvent
     public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
-        if (!(event.getEntity() instanceof NPCEntity npc)) {
+        if (!(event.getEntity() instanceof NPC npc)) {
             return;
         }
 
-        npc.setName("New name!");
-        npc.setAIMode(EnumTrainerAI.StandStill);
-
-        if (npc instanceof NPCTrainer trainer) {
-            trainer.setBattleAIMode(BattleAIMode.ADVANCED);
-            trainer.setBossTier(BossTierRegistry.getRandomBossTier());
-            trainer.setPokemonLevel(100);
-        } else if (npc instanceof NPCChatting chatting) {
-            chatting.setChat(Lists.newArrayList(
-                    "Hello world",
-                    "I am a chatting NPC!"
-            ));
-        }
+        npc.setCustomName(Component.literal("Custom Name"));
     }
 
 }
