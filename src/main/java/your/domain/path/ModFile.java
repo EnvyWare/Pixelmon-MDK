@@ -16,6 +16,7 @@ import net.neoforged.neoforge.event.server.ServerStoppingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import your.domain.path.command.CustomHealCommand;
+import your.domain.path.command.CustomSpawnCommand;
 import your.domain.path.command.ExampleCommand;
 import your.domain.path.command.MoreComplicatedCommand;
 import your.domain.path.config.ExampleConfig;
@@ -79,6 +80,7 @@ public class ModFile {
         ExampleCommand.register(event.getDispatcher());
         MoreComplicatedCommand.register(event.getDispatcher());
         CustomHealCommand.register(event.getDispatcher());
+        CustomSpawnCommand.register(event.getDispatcher());
     }
 
     @SubscribeEvent
